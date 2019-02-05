@@ -1,5 +1,7 @@
 package com.kaio.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import java.util.Objects;
 public class ItemPedido implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
 
@@ -30,12 +33,15 @@ public class ItemPedido implements Serializable {
         this.quantidade = quantidade;
         this.preco = preco;
     }
+
     public Pedido getProduto(){
         return id.getPedido();
     }
+    @JsonIgnore
     public Pedido getPedido(){
         return id.getPedido();
     }
+
     public ItemPedidoPK getId() {
         return id;
     }
