@@ -34,11 +34,12 @@ public class ItemPedido implements Serializable {
         this.preco = preco;
     }
 
-    public Pedido getProduto(){
-        return id.getPedido();
-    }
     @JsonIgnore
     public Pedido getPedido(){
+        return id.getPedido();
+    }
+
+    public Pedido getProduto(){
         return id.getPedido();
     }
 

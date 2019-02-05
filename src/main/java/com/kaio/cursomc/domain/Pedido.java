@@ -1,7 +1,7 @@
 package com.kaio.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import javax.mail.FetchProfile;
 import javax.persistence.*;
@@ -25,7 +25,7 @@ public class Pedido implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy="pedido")
     private Pagamento pagamento;
 
-    @JsonManagedReference
+
     @ManyToOne
     @JoinColumn(name="cliente_id")
     //utilizado para acessar

@@ -1,5 +1,6 @@
 package com.kaio.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kaio.cursomc.domain.enums.EstadoPagamento;
 
 import javax.persistence.*;
@@ -15,10 +16,10 @@ public abstract class Pagamento implements Serializable {
     private Integer id;
     private Integer estado;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name="pedido_id")
-    // Id Pagamento seja o mesmo do pedido
-    @MapsId
+    @MapsId  // Id Pagamento seja o mesmo do pedido
     private Pedido pedido;
 
     public Pagamento() {
