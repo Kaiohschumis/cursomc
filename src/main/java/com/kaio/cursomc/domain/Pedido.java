@@ -1,15 +1,13 @@
 package com.kaio.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import javax.mail.FetchProfile;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Pedido implements Serializable {
@@ -17,14 +15,13 @@ public class Pedido implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-
     private Integer id;
+
     @JsonFormat(pattern="dd/MM/yyyy HH:mm")
     private Date instante;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy="pedido")
     private Pagamento pagamento;
-
 
     @ManyToOne
     @JoinColumn(name="cliente_id")
@@ -36,7 +33,7 @@ public class Pedido implements Serializable {
     private Endereco enderecoDeEntrega;
 
     @OneToMany(mappedBy = "id.pedido")
-    private Set<ItemPedido> itens = new HashSet<>();
+    private List<ItemPedido> itens = new ArrayList<>();
 
     public Pedido(){
     }
@@ -89,11 +86,11 @@ public class Pedido implements Serializable {
         this.enderecoDeEntrega = enderecoDeEntrega;
     }
 
-    public Set<ItemPedido> getItens() {
+    public List<ItemPedido> getItens() {
         return itens;
     }
 
-    public void setItens(Set<ItemPedido> itens) {
+    public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
     }
     public static long getSerialVersionUID() {
